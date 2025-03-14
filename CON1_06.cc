@@ -4,7 +4,7 @@ using namespace std;
 int n, final;
 int a[100];
 
-// Khởi tạo hoán vị đầu tiên
+// Khoi tao hoan vi dau tien
 void init() {
     for (int i = 1; i <= n; i++) {
         a[i] = i;
@@ -12,7 +12,7 @@ void init() {
     final = 0;
 }
 
-// Sinh hoán vị kế tiếp
+// Ham sinh hoan vi ke tiep
 void sinh() {
     int i = n - 1;
     while (i >= 1 && a[i] > a[i + 1]) {
@@ -51,5 +51,4 @@ int main() {
         }
         cout << endl;
     }
-    return 0;
 }
