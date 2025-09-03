@@ -1,54 +1,33 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
+int t,n,X[100],daxet[100];
 
-int n, final;
-int a[100];
-
-// Khoi tao hoan vi dau tien
-void init() {
-    for (int i = 1; i <= n; i++) {
-        a[i] = i;
-    }
-    final = 0;
-}
-
-// Ham sinh hoan vi ke tiep
-void sinh() {
-    int i = n - 1;
-    while (i >= 1 && a[i] > a[i + 1]) {
-        --i;
-    }
-    if (i == 0) {
-        final = 1;
-    } else {
-        int j = n;
-        while (a[i] > a[j]) {
-            --j;
-        }
-        swap(a[i], a[j]);
-        reverse(a + i + 1, a + n + 1);
+void in(){
+    for(int i = 1; i <= n; i++){
+        cout << X[i];
     }
 }
 
-int main() {
-    int t;
-    cin >> t;
-    while (t--) {
-        cin >> n;
-        init(); // Khởi tạo lại hoán vị đầu tiên
-        vector<vector<int>> results; // Đặt lại kết quả cho test case mới
-
-        while (!final) {
-            results.push_back(vector<int>(a + 1, a + n + 1));
-            sinh();
-        }
-
-        for (const auto &perm : results) {
-            for (int x : perm) {
-                cout << x;
+void Try(int i){
+    for(int j = 1; j <= n; j++){
+        if(daxet[j] == 0){
+            X[i] = j;
+            daxet[j] = 1;
+            if (i == n){
+                in(); cout << " ";
             }
-            cout << ' ';
+            else Try(i + 1);
+            daxet[j] = 0;
         }
+    }
+}
+
+int main(){
+    cin >> t;
+    while(t--){
+        memset(daxet, 0, sizeof(daxet));
+        cin >> n;
+        Try(1);
         cout << endl;
     }
 }
